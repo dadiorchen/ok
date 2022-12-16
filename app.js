@@ -21,7 +21,7 @@ app.get('/notok', function(req, res) {
 
 app.get("/receive", function(req, res) {
   console.log("receive");
-  res.send(message);
+  res.send(message || ".");
   message = "";
 });
 
