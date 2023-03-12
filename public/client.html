@@ -1,0 +1,64 @@
+welcome ok client
+
+<script>
+  let webSocket = new WebSocket('ws://localhost:8088/');
+  webSocket.onmessage = (event) => {
+    console.log(event)
+    const message = event.data;
+    console.log(message);
+    const obj = JSON.parse(message);
+    console.log(obj);
+    if(obj.say){
+        // play audio
+        console.log(obj.say);
+        const synth = window.speechSynthesis;
+        const utterThis = new SpeechSynthesisUtterance(obj.say);
+        synth.speak(utterThis);
+      };
+  };
+
+  // on connection open
+  webSocket.onopen = (event) => {
+    console.log(event)
+    const synth = window.speechSynthesis;
+    const utterThis = new SpeechSynthesisUtterance('connection established');
+    synth.speak(utterThis);
+  };
+  // say 'connection lost' when connection is lost
+  webSocket.onclose = (event) => {
+    console.log(event)
+    const synth = window.speechSynthesis;
+    const utterThis = new SpeechSynthesisUtterance('connection lost');
+    synth.speak(utterThis);
+
+    // try to reconnect
+    setTimeout(() => {
+      webSocket = new WebSocket('ws://localhost:8088/');
+      webSocket.onmessage = (event) => {
+        console.log(event)
+        const message = event.data;
+        console.log(message);
+        const obj = JSON.parse(message);
+        console.log(obj);
+        if(obj.say){
+            // play audio
+            console.log(obj.say);
+            const synth = window.speechSynthesis;
+            const utterThis = new SpeechSynthesisUtterance(obj.say);
+            synth.speak(utterThis);
+          };
+      };
+
+      // on connection open
+      webSocket.onopen = (event) => {
+        console.log(event)
+        const synth = window.speechSynthesis;
+        const utterThis = new SpeechSynthesisUtterance('connection established');
+        synth.speak(utterThis);
+      };
+    }, 1000);
+  };
+
+</script>
+
+<div id="messages"></div>
