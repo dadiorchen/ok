@@ -1,7 +1,9 @@
 welcome ok client
 
 <script>
-  let webSocket = new WebSocket('ws://localhost:8088/');
+  console.log("starting...");
+  const host = 'ws://3002.dev.dadiorchen.com/';
+  let webSocket = new WebSocket(host);
   webSocket.onmessage = (event) => {
     console.log(event)
     const message = event.data;
@@ -33,7 +35,7 @@ welcome ok client
 
     // try to reconnect
     setTimeout(() => {
-      webSocket = new WebSocket('ws://localhost:8088/');
+      webSocket = new WebSocket(host);
       webSocket.onmessage = (event) => {
         console.log(event)
         const message = event.data;

@@ -38,8 +38,8 @@ app.get('/notok', function(req, res) {
 app.use('/static', express.static('public'));
 
 // start app
-app.listen(8080, function() {
-    console.log('App listening on port 8080');
+app.listen(3001, function() {
+    console.log('App listening on port 3001');
 }
 );
 
@@ -53,8 +53,8 @@ app.listen(8080, function() {
 const WebSocket = require('ws');
 
 // create a new websocket server listening on port 8080
-const wss = new WebSocket.Server({ port: 8088 }, function() {
-  console.log('Websocket server listening on port 8088');
+const wss = new WebSocket.Server({ port: 3002 }, function() {
+  console.log('Websocket server listening on port 3002');
 });
 
 // connection is up, let's add a simple simple event
