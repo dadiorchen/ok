@@ -11,6 +11,9 @@ var eventEmitter = new events.EventEmitter();
 
 let message = "";
 
+const PORT = process.env.PORT || 3000;
+const WS_PORT = process.env.WS_PORT || 3001;
+
 
 // /
 app.get('/', function(req, res) {
@@ -38,8 +41,8 @@ app.get('/notok', function(req, res) {
 app.use('/static', express.static('public'));
 
 // start app
-app.listen(3001, function() {
-    console.log('App listening on port 3001');
+app.listen(PORT, function() {
+    console.log('App listening on port ' + PORT);
 }
 );
 
@@ -53,8 +56,8 @@ app.listen(3001, function() {
 const WebSocket = require('ws');
 
 // create a new websocket server listening on port 8080
-const wss = new WebSocket.Server({ port: 3002 }, function() {
-  console.log('Websocket server listening on port 3002');
+const wss = new WebSocket.Server({ port: WS_PORT }, function() {
+  console.log('Websocket server listening on port ' + WS_PORT);
 });
 
 // connection is up, let's add a simple simple event
