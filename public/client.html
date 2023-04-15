@@ -26,20 +26,20 @@ welcome ok client
   webSocket.onopen = (event) => {
     console.log(event)
     const synth = window.speechSynthesis;
-    const utterThis = new SpeechSynthesisUtterance('connection established');
-    synth.speak(utterThis);
+    //const utterThis = new SpeechSynthesisUtterance('connection established');
+    //synth.speak(utterThis);
 
     // ping server every 5 seconds
     setInterval(() => {
       webSocket.send('ping');
-    }, 5000);
+    }, 20* 1000);
   };
   // say 'connection lost' when connection is lost
   webSocket.onclose = (event) => {
     console.log(event)
     const synth = window.speechSynthesis;
-    const utterThis = new SpeechSynthesisUtterance('connection lost');
-    synth.speak(utterThis);
+    //const utterThis = new SpeechSynthesisUtterance('connection lost');
+    //synth.speak(utterThis);
 
     // try to reconnect
     setTimeout(() => {
