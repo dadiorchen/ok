@@ -66,13 +66,14 @@ wss.on('connection', function connection(ws) {
 //  ws.send(JSON.stringify({
 //    say: "connected",
 //  }));
-  setTimeout(function() {
-    ws.send(JSON.stringify({
-      say: "OK, I have done.",
-    }));
-  }, 1000*10);
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
+  });
+
+  // ping pong
+  ws.on('ping', function incoming(data) {
+    console.log('ping: %s', data);
+    ws.pong();
   });
 
   // listen to onOK event

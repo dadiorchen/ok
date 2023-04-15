@@ -28,6 +28,11 @@ welcome ok client
     const synth = window.speechSynthesis;
     const utterThis = new SpeechSynthesisUtterance('connection established');
     synth.speak(utterThis);
+
+    // ping server every 5 seconds
+    setInterval(() => {
+      webSocket.send('ping');
+    }, 5000);
   };
   // say 'connection lost' when connection is lost
   webSocket.onclose = (event) => {
